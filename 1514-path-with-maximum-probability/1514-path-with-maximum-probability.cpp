@@ -15,13 +15,13 @@ public:
         q.push(start_node);
         
         while(!q.empty()){
-            int p = q.front(); q.pop();
-            for(auto x : vertex[p]){
-                int i = x.first;
-                double j = x.second;
-                if(Probability[p]*j > Probability[i]){
-                    Probability[i] = Probability[p]*j;
-                    q.push(i);
+            int top = q.front(); q.pop();
+            for(auto v : vertex[top]){
+                int next_node = v.first;
+                double weight = v.second;
+                if(Probability[top]*weight > Probability[next_node]){
+                    Probability[next_node] = Probability[top]*weight;
+                    q.push(next_node);
                 }
             }
         }
