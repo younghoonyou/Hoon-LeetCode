@@ -1,6 +1,5 @@
 class Solution {
 public:
-    
     int getLucky(string s, int k) {
         string strtoint;
         int sum = 0;
@@ -16,7 +15,6 @@ public:
             }
             strtoint = to_string(sum);
         }
-        
         return sum;
     }
 };
