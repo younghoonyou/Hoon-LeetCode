@@ -36,7 +36,6 @@ public:
         vector<vector<int>> ret(m, vector<int>(n,-1));
         int dir = 0;
         pair<int,int> position(0, 0);
-        // position = {0, 0};
         while(head){
             int x = position.first;
             int y = position.second;
