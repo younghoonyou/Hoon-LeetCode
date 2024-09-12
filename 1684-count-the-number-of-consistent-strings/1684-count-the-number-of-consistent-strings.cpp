@@ -1,18 +1,16 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
-        unordered_map<char, bool> m;
-        int ans = 0;
-        for(char &ch : allowed) m[ch] = true;
+        bool alpha[26] = {false, };
+        int ans = words.size();
+        for(char &ch : allowed) alpha[ch - 'a'] = true;
         for(string &word : words){
-            bool included = true;
             for(char &ch : word){
-                if(m.find(ch)==m.end()){
-                    included = false;
+                if(!alpha[ch - 'a']){
+                    ans--;
                     break;
                 }
             }
-            if(included) ans++;
         }
         return ans;
     }
