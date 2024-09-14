@@ -1,17 +1,11 @@
 int firstUniqChar(char* s) {
-    int counts[26];
-    memset(counts, 0, sizeof(int) * 26);
-    
-    int i, slen = strlen(s);
-    for (i = 0; i < slen; i++) {
-        char c = s[i];
-        counts[c - 'a'] += 1;
+    int arr[26] = {0, };
+    int len = strlen(s);
+    for(int i=0;i<len;++i){
+        arr[s[i] - 'a']++;
     }
-    
-    for (i = 0; i < slen; i++) {
-        char c = s[i];
-        if (counts[c - 'a'] == 1)
-            return i;
+    for(int i=0;i<len;++i){
+        if(arr[s[i] - 'a'] == 1) return i;
     }
     return -1;
 }
