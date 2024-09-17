@@ -3,13 +3,9 @@ public:
     vector<string> uncommonFromSentences(string s1, string s2) {
         vector<string> ans;
         map<string, int> m;
-        istringstream ss1(s1);
+        istringstream ss(s1 + " " + s2);
         string buffer;
-        while(getline(ss1, buffer, ' ')){
-            m[buffer]++;
-        }
-        istringstream ss2(s2);
-        while(getline(ss2, buffer, ' ')){
+        while(getline(ss, buffer, ' ')){
             m[buffer]++;
         }
         for(auto it:m){
