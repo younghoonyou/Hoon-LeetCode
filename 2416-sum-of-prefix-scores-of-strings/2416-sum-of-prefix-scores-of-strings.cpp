@@ -1,28 +1,40 @@
-class Trie {
-    public:
-        Trie *ch[26] = {};
-        int visited = 0;
-};
-class Solution {
+class TrieNode{
 public:
-    vector<int> sumPrefixScores(vector<string>& words) {
-        Trie trie;
-        vector<int> ans;
-        for (string& x: words) {
-            auto t = &trie;
-            for (char& c: x) {
-                if (!t->ch[c - 'a']) t->ch[c - 'a'] = new Trie();
-                t->ch[c - 'a']->visited++;
-                t = t->ch[c - 'a'];
-            }
+    map<char, TrieNode*> children;
+    int val = 0;
+};
+
+class Solution {
+private:
+    TrieNode* manager = nullptr;
+public:
+    void insertNode(string word){
+        TrieNode *curr = manager;
+        for(char &ch:word){
+            if(!curr->children[ch]) curr->children[ch] = new TrieNode();
+            curr = curr->children[ch];
+            curr->val++;
         }
-        for (string& x: words) {
-            auto t = &trie; int curr = 0;
-            for (char& c: x) {
-                curr += t->ch[c - 'a']->visited;
-                t = t->ch[c - 'a'];
-            }
-            ans.push_back(curr);
+    }
+    
+    int getScore(string word){
+        TrieNode *curr = manager;
+        int total = 0;
+        for(char &ch:word){
+            curr = curr->children[ch];
+            total += curr->val;
+        }
+        return total;
+    }
+    
+    vector<int> sumPrefixScores(vector<string>& words) {
+        manager = new TrieNode();
+        for(string &word:words){
+            insertNode(word);
+        }
+        vector<int> ans;
+        for(string &word:words){
+            ans.push_back(getScore(word));
         }
         return ans;
     }
