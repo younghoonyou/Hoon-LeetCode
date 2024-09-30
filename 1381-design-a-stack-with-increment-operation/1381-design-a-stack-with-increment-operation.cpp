@@ -9,7 +9,6 @@ public:
     void push(int x) {
         if(top == vec.size() - 1) return;
         vec[++top] = x;
-        print();
     }
     
     int pop() {
@@ -28,14 +27,6 @@ public:
                 vec[i] += val;
             }
         }
-        print();
-    }
-    void print(){
-        cout << "Vector : ";
-        for(int i=0;i<=top;++i){
-            cout << vec[i] << ' ';
-        }
-        cout << '\n';
     }
 };
 
