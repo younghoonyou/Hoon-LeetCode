@@ -1,22 +1,17 @@
 class Solution {
 public:
     string makeFancyString(string s) {
-        int count = 0, i = 0;
-        char prev = s[0];
-        
-        for (auto c : s) {
-            
-            if (c == prev) count++;
-            
-            else {
-                count = 1;
-                prev = c;
-            }
-            
-            if (count < 3) s[i++] = c;
+        int size = s.length();
+        char prev;
+        string ans = "";
+        int cnt = 1;
+        for(char ch:s){
+            if(prev == ch) cnt++;
+            else cnt = 1;
+            prev = ch;
+            if(cnt > 2) continue;
+            ans += ch;
         }
-        
-        s.erase(i);
-        return s;
+        return ans;
     }
 };
