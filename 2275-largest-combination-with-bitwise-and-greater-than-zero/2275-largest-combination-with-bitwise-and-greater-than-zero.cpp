@@ -12,7 +12,6 @@ public:
         }
         int ans = 0;
 		for(int i = 0; i < 32; i++){
-            //cout<<bits[i]<<" ";
 			ans = max(ans, bits[i]);
         }
 		return ans;
